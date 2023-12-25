@@ -13,4 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+#Testing
 README.md
