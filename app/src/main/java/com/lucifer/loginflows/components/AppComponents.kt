@@ -1,5 +1,6 @@
 package com.lucifer.loginflows.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -179,8 +181,24 @@ fun ClickableTextComponent(value: String) {
 
     val annotatedString = buildAnnotatedString {
         this.append(initialText)
-//        this.withStyle(style = SpanStyle(color = Purple40))
+        this.withStyle(style = SpanStyle(color = Purple40)){
+            pushStringAnnotation(tag = privacyPolicyText, annotation = privacyPolicyText)
+            this.append(privacyPolicyText)
+        }
+
+        this.append(andText)
+        this.withStyle(style = SpanStyle(color = Purple40)){
+            pushStringAnnotation(tag = termsText, annotation = termsText)
+            this.append(termsText)
+        }
     }
+
+    ClickableText(text = annotatedString, onClick ={offset ->
+        annotatedString.getStringAnnotations(offset,offset)
+            .firstOrNull()?.also {span ->
+                Log.d("ClickableTextComponent", "$span")
+            }
+    })
 }
 
 
