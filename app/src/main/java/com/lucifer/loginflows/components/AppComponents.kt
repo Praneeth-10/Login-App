@@ -150,13 +150,12 @@ fun MyPasswordField(labelValue: String, imageVector: ImageVector) {
 }
 
 @Composable
-fun CheckBoxComponent(value: String) {
+fun CheckBoxComponent() {
     Row (
         modifier = Modifier
             .fillMaxWidth()
-            .height(56.dp)
-            .padding(16.dp),
-        verticalAlignment = Alignment.CenterVertically
+            .height(56.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ){
         val checkBoxValue = remember {
             mutableStateOf(false)
@@ -166,13 +165,13 @@ fun CheckBoxComponent(value: String) {
             checkBoxValue.value = !checkBoxValue.value
         })
 
-        Spacer(modifier = Modifier.width(10.dp))
+        ClickableTextComponent()
 
     }
 }
 
 @Composable
-fun ClickableTextComponent(value: String) {
+fun ClickableTextComponent() {
 
     val initialText = stringResource(id = R.string.by_continuing_you_accept)
     val privacyPolicyText = stringResource(id = R.string.privacy_policy)

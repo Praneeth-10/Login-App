@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lucifer.loginflows.R
+import com.lucifer.loginflows.components.CheckBoxComponent
 import com.lucifer.loginflows.components.MyPasswordField
 import com.lucifer.loginflows.components.MyTextField
 import com.lucifer.loginflows.components.NormalTextComponent
@@ -81,6 +82,10 @@ fun SignUpScreen() {
                 labelValue = stringResource(id = R.string.password),
                 imageVector = Icons.Outlined.Lock
             )
+
+            Spacer(modifier = Modifier.height(14.dp))
+            CheckBoxComponent()
+
         }
     }
 }
