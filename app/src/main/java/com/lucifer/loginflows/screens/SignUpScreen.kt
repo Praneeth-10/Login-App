@@ -69,7 +69,8 @@ fun SignUpScreen() {
             )
 
             Spacer(modifier = Modifier.height(20.dp))
-            MyTextField(labelValue = stringResource(id = R.string.last_name), imageVector = Icons.Outlined.Person)
+            MyTextField(labelValue = stringResource(id = R.string.last_name),
+                imageVector = Icons.Outlined.Person)
 
             Spacer(modifier = Modifier.height(20.dp))
             MyTextField(
