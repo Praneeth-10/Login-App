@@ -145,7 +145,7 @@ fun MyPasswordField(labelValue: String, imageVector: ImageVector) {
 }
 
 @Composable
-fun CheckBoxComponent() {
+fun CheckBoxComponent(onTextSelected : (String) -> Unit) {
     Row (
         modifier = Modifier
             .fillMaxWidth()
@@ -160,13 +160,13 @@ fun CheckBoxComponent() {
             checkBoxValue.value = !checkBoxValue.value
         })
 
-        ClickableTextComponent()
+        ClickableTextComponent(onTextSelected)
 
     }
 }
 
 @Composable
-fun ClickableTextComponent() {
+fun ClickableTextComponent(onTextSelected : (String) -> Unit) {
 
     val initialText = stringResource(id = R.string.by_continuing_you_accept)
     val privacyPolicyText = stringResource(id = R.string.privacy_policy)
@@ -190,7 +190,11 @@ fun ClickableTextComponent() {
     ClickableText(text = annotatedString, onClick ={offset ->
         annotatedString.getStringAnnotations(offset,offset)
             .firstOrNull()?.also {span ->
-                Log.d("ClickableTextComponent", "$span")
+                Log.d("ClickableTextComponent", span.item)
+
+                if(span.item == termsText || span.item == privacyPolicyText){
+                    onTextSelected(span.item)
+                }
             }
     })
 }

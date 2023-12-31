@@ -29,6 +29,8 @@ import com.lucifer.loginflows.components.CheckBoxComponent
 import com.lucifer.loginflows.components.MyPasswordField
 import com.lucifer.loginflows.components.MyTextField
 import com.lucifer.loginflows.components.NormalTextComponent
+import com.lucifer.loginflows.navigation.PostOfficeAppRouter
+import com.lucifer.loginflows.navigation.Screen
 
 @Composable
 fun SignUpScreen() {
@@ -85,7 +87,14 @@ fun SignUpScreen() {
             )
 
             Spacer(modifier = Modifier.height(14.dp))
-            CheckBoxComponent()
+            CheckBoxComponent(onTextSelected = {
+                if (it == " Privacy Policy"){
+                    PostOfficeAppRouter.navigateTo(Screen.PrivacyPolicy)
+                }
+                else{
+                    PostOfficeAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
+                }
+            })
 
         }
     }
