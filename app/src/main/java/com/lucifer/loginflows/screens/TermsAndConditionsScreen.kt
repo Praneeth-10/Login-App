@@ -16,6 +16,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lucifer.loginflows.R
 import com.lucifer.loginflows.components.NormalTextComponent
+import com.lucifer.loginflows.navigation.PostOfficeAppRouter
+import com.lucifer.loginflows.navigation.Screen
+import com.lucifer.loginflows.navigation.SystemBackButtonHandler
 
 @Composable
 fun TermsAndConditionsScreen() {
@@ -36,12 +39,15 @@ fun TermsAndConditionsScreen() {
                 .fillMaxWidth()
                 .padding(6.dp)
         )
+    }
 
+    SystemBackButtonHandler {
+        PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
     }
 }
 
 @Preview
 @Composable
-fun prevTermsAndCon() {
+fun PrevTermsAndCon() {
     TermsAndConditionsScreen()
 }
