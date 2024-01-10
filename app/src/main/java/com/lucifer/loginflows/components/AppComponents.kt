@@ -224,7 +224,7 @@ fun ButtonComponent(value: String) {
                 .fillMaxWidth()
                 .heightIn(48.dp)
                 .background(
-                    brush = Brush.horizontalGradient(listOf(Color(0xFE00D4FF), Color(0xFEFFFFFF))),
+                    brush = Brush.horizontalGradient(listOf( Color(0x94FFFFFF),Color(0xFE0088FF))),
                     shape = RoundedCornerShape(50.dp)
                 ),
             contentAlignment = Alignment.Center

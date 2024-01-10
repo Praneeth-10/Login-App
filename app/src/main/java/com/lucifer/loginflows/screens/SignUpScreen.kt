@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lucifer.loginflows.R
+import com.lucifer.loginflows.components.ButtonComponent
 import com.lucifer.loginflows.components.CheckBoxComponent
 import com.lucifer.loginflows.components.MyPasswordField
 import com.lucifer.loginflows.components.MyTextField
@@ -95,6 +96,10 @@ fun SignUpScreen() {
                     PostOfficeAppRouter.navigateTo(Screen.TermsAndConditionsScreen)
                 }
             })
+
+            Spacer(modifier = Modifier.height(64.dp))
+            ButtonComponent(value = stringResource(id = R.string.register))
+
 
         }
 
