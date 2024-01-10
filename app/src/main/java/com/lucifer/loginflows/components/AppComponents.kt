@@ -2,11 +2,14 @@ package com.lucifer.loginflows.components
 
 import android.util.Log
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -25,6 +28,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
@@ -143,19 +147,19 @@ fun MyPasswordField(labelValue: String, imageVector: ImageVector) {
             }
         },
         visualTransformation =
-            if (passwordVisible.value)  VisualTransformation.None
-            else PasswordVisualTransformation()
+        if (passwordVisible.value) VisualTransformation.None
+        else PasswordVisualTransformation()
     )
 }
 
 @Composable
-fun CheckBoxComponent(onTextSelected : (String) -> Unit) {
-    Row (
+fun CheckBoxComponent(onTextSelected: (String) -> Unit) {
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp),
         verticalAlignment = Alignment.CenterVertically,
-    ){
+    ) {
         val checkBoxValue = remember {
             mutableStateOf(false)
         }
@@ -170,7 +174,7 @@ fun CheckBoxComponent(onTextSelected : (String) -> Unit) {
 }
 
 @Composable
-fun ClickableTextComponent(onTextSelected : (String) -> Unit) {
+fun ClickableTextComponent(onTextSelected: (String) -> Unit) {
 
     val initialText = stringResource(id = R.string.by_continuing_you_accept)
     val privacyPolicyText = stringResource(id = R.string.privacy_policy)
@@ -179,24 +183,24 @@ fun ClickableTextComponent(onTextSelected : (String) -> Unit) {
 
     val annotatedString = buildAnnotatedString {
         this.append(initialText)
-        this.withStyle(style = SpanStyle(color = Purple40)){
+        this.withStyle(style = SpanStyle(color = Purple40)) {
             pushStringAnnotation(tag = privacyPolicyText, annotation = privacyPolicyText)
             this.append(privacyPolicyText)
         }
 
         this.append(andText)
-        this.withStyle(style = SpanStyle(color = Purple40)){
+        this.withStyle(style = SpanStyle(color = Purple40)) {
             pushStringAnnotation(tag = termsText, annotation = termsText)
             this.append(termsText)
         }
     }
 
-    ClickableText(text = annotatedString, onClick ={offset ->
-        annotatedString.getStringAnnotations(offset,offset)
-            .firstOrNull()?.also {span ->
+    ClickableText(text = annotatedString, onClick = { offset ->
+        annotatedString.getStringAnnotations(offset, offset)
+            .firstOrNull()?.also { span ->
                 Log.d("ClickableTextComponent", span.item)
 
-                if(span.item == termsText || span.item == privacyPolicyText){
+                if (span.item == termsText || span.item == privacyPolicyText) {
                     onTextSelected(span.item)
                 }
             }
@@ -204,9 +208,10 @@ fun ClickableTextComponent(onTextSelected : (String) -> Unit) {
 }
 
 @Composable
-fun ButtonComponent(value : String) {
+fun ButtonComponent(value: String) {
 
-    Button(onClick = { /*TODO*/ },
+    Button(
+        onClick = { /*TODO*/ },
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(48.dp),
@@ -214,8 +219,26 @@ fun ButtonComponent(value : String) {
         colors = ButtonDefaults.buttonColors(Color.Transparent)
     ) {
 
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(48.dp)
+                .background(
+                    brush = Brush.horizontalGradient(listOf(Color(0xFE00D4FF), Color(0xFEFFFFFF))),
+                    shape = RoundedCornerShape(50.dp)
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = value,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+        }
+
     }
-    
+
 }
 
 @Preview
