@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.lucifer.loginflows.R
 import com.lucifer.loginflows.components.ButtonComponent
 import com.lucifer.loginflows.components.CheckBoxComponent
+import com.lucifer.loginflows.components.DividerTextComponent
 import com.lucifer.loginflows.components.MyPasswordField
 import com.lucifer.loginflows.components.MyTextField
 import com.lucifer.loginflows.components.NormalTextComponent
@@ -97,9 +98,11 @@ fun SignUpScreen() {
                 }
             })
 
-            Spacer(modifier = Modifier.height(64.dp))
+            Spacer(modifier = Modifier.height(80.dp))
             ButtonComponent(value = stringResource(id = R.string.register))
 
+            Spacer(modifier = Modifier.height(80.dp))
+            DividerTextComponent()
 
         }
 

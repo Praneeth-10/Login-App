@@ -18,6 +18,7 @@ import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -224,7 +225,7 @@ fun ButtonComponent(value: String) {
                 .fillMaxWidth()
                 .heightIn(48.dp)
                 .background(
-                    brush = Brush.horizontalGradient(listOf( Color(0x94FFFFFF),Color(0xFE0088FF))),
+                    brush = Brush.horizontalGradient(listOf(Color(0xFE7FC0FA), Color(0xFE0088FF))),
                     shape = RoundedCornerShape(50.dp)
                 ),
             contentAlignment = Alignment.Center
@@ -239,6 +240,25 @@ fun ButtonComponent(value: String) {
 
     }
 
+}
+
+@Composable
+fun DividerTextComponent() {
+    Row(modifier = Modifier.fillMaxWidth()) {
+        Divider(modifier = Modifier
+            .fillMaxWidth()
+            .weight(1f),
+            color = Color.Gray,
+            thickness = 1.dp
+        )
+        Text(text = "or", fontSize = 14.sp)
+        Divider(modifier = Modifier
+            .fillMaxWidth()
+            .weight(1f),
+            color = Color.Gray,
+            thickness = 1.dp
+        )
+    }
 }
 
 @Preview
