@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
@@ -244,14 +245,15 @@ fun ButtonComponent(value: String) {
 
 @Composable
 fun DividerTextComponent() {
-    Row(modifier = Modifier.fillMaxWidth()) {
+    Row(modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically) {
         Divider(modifier = Modifier
             .fillMaxWidth()
             .weight(1f),
             color = Color.Gray,
             thickness = 1.dp
         )
-        Text(text = "or", fontSize = 14.sp)
+        Text(modifier = Modifier.padding(8.dp), text = "or", fontSize = 18.sp)
         Divider(modifier = Modifier
             .fillMaxWidth()
             .weight(1f),
@@ -259,6 +261,33 @@ fun DividerTextComponent() {
             thickness = 1.dp
         )
     }
+}
+
+@Composable
+fun ClickableLoginTextComponent(onTextSelected: (String) -> Unit) {
+
+    val initialText = stringResource(id = R.string.already_have_account)
+    val loginText = stringResource(id = R.string.login)
+
+
+    val annotatedString = buildAnnotatedString {
+        this.append(initialText)
+        this.withStyle(style = SpanStyle(color = Purple40)) {
+            pushStringAnnotation(tag = loginText, annotation = loginText)
+            this.append(loginText)
+        }
+    }
+
+    ClickableText(text = annotatedString, onClick = { offset ->
+        annotatedString.getStringAnnotations(offset, offset)
+            .firstOrNull()?.also { span ->
+                Log.d("ClickableTextComponent", span.item)
+
+                if (span.item == loginText) {
+                    onTextSelected(span.item)
+                }
+            }
+    })
 }
 
 @Preview

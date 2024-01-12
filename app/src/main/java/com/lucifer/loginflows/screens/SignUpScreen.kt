@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.lucifer.loginflows.R
 import com.lucifer.loginflows.components.ButtonComponent
 import com.lucifer.loginflows.components.CheckBoxComponent
+import com.lucifer.loginflows.components.ClickableLoginTextComponent
 import com.lucifer.loginflows.components.DividerTextComponent
 import com.lucifer.loginflows.components.MyPasswordField
 import com.lucifer.loginflows.components.MyTextField
@@ -98,11 +99,16 @@ fun SignUpScreen() {
                 }
             })
 
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.height(100.dp))
             ButtonComponent(value = stringResource(id = R.string.register))
 
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.height(40.dp))
             DividerTextComponent()
+
+            Spacer(modifier = Modifier.height(20.dp))
+            ClickableLoginTextComponent(onTextSelected = {
+                PostOfficeAppRouter.navigateTo(Screen.LoginScreen)
+            })
 
         }
 
