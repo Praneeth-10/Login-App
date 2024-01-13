@@ -245,18 +245,22 @@ fun ButtonComponent(value: String) {
 
 @Composable
 fun DividerTextComponent() {
-    Row(modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically) {
-        Divider(modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f),
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
             color = Color.Gray,
             thickness = 1.dp
         )
         Text(modifier = Modifier.padding(8.dp), text = "or", fontSize = 18.sp)
-        Divider(modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f),
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
             color = Color.Gray,
             thickness = 1.dp
         )
@@ -278,16 +282,25 @@ fun ClickableLoginTextComponent(onTextSelected: (String) -> Unit) {
         }
     }
 
-    ClickableText(text = annotatedString, onClick = { offset ->
-        annotatedString.getStringAnnotations(offset, offset)
-            .firstOrNull()?.also { span ->
-                Log.d("ClickableTextComponent", span.item)
+    ClickableText(modifier = Modifier
+        .fillMaxWidth()
+        .heightIn(18.dp),
+        text = annotatedString,
+        style = TextStyle(
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Normal,
+            fontStyle = FontStyle.Normal,
+        ),
+        onClick = { offset ->
+            annotatedString.getStringAnnotations(offset, offset)
+                .firstOrNull()?.also { span ->
+                    Log.d("ClickableTextComponent", span.item)
 
-                if (span.item == loginText) {
-                    onTextSelected(span.item)
+                    if (span.item == loginText) {
+                        onTextSelected(span.item)
+                    }
                 }
-            }
-    })
+        })
 }
 
 @Preview

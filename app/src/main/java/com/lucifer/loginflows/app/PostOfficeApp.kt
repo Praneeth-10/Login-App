@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.lucifer.loginflows.navigation.PostOfficeAppRouter
 import com.lucifer.loginflows.navigation.Screen
+import com.lucifer.loginflows.screens.LoginScreen
 import com.lucifer.loginflows.screens.PrivacyPolicyScreen
 import com.lucifer.loginflows.screens.SignUpScreen
 import com.lucifer.loginflows.screens.TermsAndConditionsScreen
@@ -28,6 +29,10 @@ fun PostOfficeApp() {
                 }
                 is Screen.PrivacyPolicy -> {
                     PrivacyPolicyScreen()
+                }
+
+                is Screen.LoginScreen -> {
+                    LoginScreen()
                 }
             }
         }
