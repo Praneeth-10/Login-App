@@ -1,1 +1,1 @@
-A simple Login with Clean architecture.
+A simple Login with Just Compose.
