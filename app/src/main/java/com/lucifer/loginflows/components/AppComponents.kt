@@ -283,15 +283,15 @@ fun ClickableLoginTextComponent(onTextSelected: (String) -> Unit) {
         }
     }
 
-    ClickableText(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxSize()
-        .heightIn(18.dp),
-        text = annotatedString,
+    ClickableText(text = annotatedString,
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(18.dp),
         style = TextStyle(
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
             fontStyle = FontStyle.Normal,
+            textAlign = TextAlign.Center
         ),
         onClick = { offset ->
             annotatedString.getStringAnnotations(offset, offset)
