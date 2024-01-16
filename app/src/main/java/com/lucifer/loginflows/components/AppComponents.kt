@@ -45,6 +45,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -299,6 +300,61 @@ fun ClickableLoginTextComponent(onTextSelected: (String) -> Unit) {
                     Log.d("ClickableTextComponent", span.item)
 
                     if (span.item == loginText) {
+                        onTextSelected(span.item)
+                    }
+                }
+        })
+}
+
+@Composable
+fun UnderlinedTextComponent(value: String) {
+    Text(
+        text = value,
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 40.dp),
+        style = TextStyle(
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Normal,
+            fontStyle = FontStyle.Normal,
+        ),
+        color = colorResource(id = R.color.colorGray),
+        textAlign = TextAlign.Center,
+        textDecoration = TextDecoration.Underline
+    )
+}
+
+@Composable
+fun ClickableRegisterTextComponent(onTextSelected: (String) -> Unit) {
+
+    val initialText = stringResource(id = R.string.dont_have_account)
+    val registerText = stringResource(id = R.string.register)
+
+
+    val annotatedString = buildAnnotatedString {
+        this.append(initialText)
+        this.withStyle(style = SpanStyle(color = Purple40)) {
+            pushStringAnnotation(tag = registerText, annotation = registerText)
+            this.append(registerText)
+        }
+    }
+
+    ClickableText(text = annotatedString,
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(18.dp),
+        style = TextStyle(
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Normal,
+            fontStyle = FontStyle.Normal,
+            textAlign = TextAlign.Center
+        ),
+        onClick = { offset ->
+            annotatedString.getStringAnnotations(offset, offset)
+                .firstOrNull()?.also { span ->
+                    Log.d("ClickableTextComponent", span.item)
+
+                    if (span.item == registerText) {
                         onTextSelected(span.item)
                     }
                 }

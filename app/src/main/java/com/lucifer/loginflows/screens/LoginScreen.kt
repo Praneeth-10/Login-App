@@ -25,9 +25,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lucifer.loginflows.R
 import com.lucifer.loginflows.components.ButtonComponent
+import com.lucifer.loginflows.components.DividerTextComponent
 import com.lucifer.loginflows.components.MyPasswordField
 import com.lucifer.loginflows.components.MyTextField
 import com.lucifer.loginflows.components.NormalTextComponent
+import com.lucifer.loginflows.components.UnderlinedTextComponent
 
 @Composable
 fun LoginScreen() {
@@ -73,8 +75,16 @@ fun LoginScreen() {
                 imageVector = Icons.Outlined.Lock
             )
 
-            Spacer(modifier = Modifier.height(80.dp))
+            Spacer(modifier = Modifier.height(120.dp))
             ButtonComponent(value = stringResource(id = R.string.login))
+
+            Spacer(modifier = Modifier.height(30.dp))
+            UnderlinedTextComponent(value = stringResource(id = R.string.forgot_password))
+
+            Spacer(modifier = Modifier.height(40.dp))
+            DividerTextComponent()
+
+
         }
 
     }
