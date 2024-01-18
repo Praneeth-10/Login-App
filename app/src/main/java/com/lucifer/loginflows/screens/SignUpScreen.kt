@@ -106,7 +106,7 @@ fun SignUpScreen() {
             DividerTextComponent()
 
             Spacer(modifier = Modifier.height(1.dp))
-            ClickableLoginTextComponent(onTextSelected = {
+            ClickableLoginTextComponent(tryingToLogin = true,onTextSelected = {
                 PostOfficeAppRouter.navigateTo(Screen.LoginScreen)
             })
 

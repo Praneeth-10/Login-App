@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.lucifer.loginflows.R
 import com.lucifer.loginflows.components.ButtonComponent
-import com.lucifer.loginflows.components.ClickableRegisterTextComponent
+import com.lucifer.loginflows.components.ClickableLoginTextComponent
 import com.lucifer.loginflows.components.DividerTextComponent
 import com.lucifer.loginflows.components.MyPasswordField
 import com.lucifer.loginflows.components.MyTextField
@@ -33,6 +33,7 @@ import com.lucifer.loginflows.components.NormalTextComponent
 import com.lucifer.loginflows.components.UnderlinedTextComponent
 import com.lucifer.loginflows.navigation.PostOfficeAppRouter
 import com.lucifer.loginflows.navigation.Screen
+import com.lucifer.loginflows.navigation.SystemBackButtonHandler
 
 @Composable
 fun LoginScreen() {
@@ -88,11 +89,15 @@ fun LoginScreen() {
             DividerTextComponent()
 
             Spacer(modifier = Modifier.height(10.dp))
-            ClickableRegisterTextComponent(onTextSelected = {
+            ClickableLoginTextComponent(tryingToLogin = false,onTextSelected = {
                 PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
             })
         }
 
+    }
+
+    SystemBackButtonHandler {
+        PostOfficeAppRouter.navigateTo(Screen.SignUpScreen)
     }
 }
 
