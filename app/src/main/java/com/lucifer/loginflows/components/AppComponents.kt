@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -33,6 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
@@ -108,6 +110,7 @@ fun MyTextField(labelValue: String, imageVector: ImageVector) {
 @Composable
 fun MyPasswordField(labelValue: String, imageVector: ImageVector) {
 
+    val localFocusManager = LocalFocusManager.current
     val passwordValue = remember {
         mutableStateOf("")
     }
@@ -125,7 +128,7 @@ fun MyPasswordField(labelValue: String, imageVector: ImageVector) {
             cursorColor = colorResource(id = R.color.colorPrimary),
             unfocusedContainerColor = Color(0xFFF7F8F8)
         ),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password, imeAction = ImeAction.Done),
         value = passwordValue.value,
         onValueChange = {
             passwordValue.value = it
@@ -135,6 +138,9 @@ fun MyPasswordField(labelValue: String, imageVector: ImageVector) {
                 imageVector = imageVector,
                 contentDescription = ""
             )
+        },
+        keyboardActions = KeyboardActions{
+            localFocusManager.clearFocus()
         },
         trailingIcon = {
             IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
@@ -154,7 +160,9 @@ fun MyPasswordField(labelValue: String, imageVector: ImageVector) {
         },
         visualTransformation =
         if (passwordVisible.value) VisualTransformation.None
-        else PasswordVisualTransformation()
+        else PasswordVisualTransformation(),
+        singleLine = true,
+        maxLines = 1
     )
 }
 
