@@ -40,6 +40,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
@@ -87,7 +88,7 @@ fun MyTextField(labelValue: String, imageVector: ImageVector) {
             cursorColor = colorResource(id = R.color.colorPrimary),
             unfocusedContainerColor = Color(0xFFF7F8F8)
         ),
-        keyboardOptions = KeyboardOptions.Default,
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
         value = textValue.value,
         onValueChange = {
             textValue.value = it
@@ -97,7 +98,9 @@ fun MyTextField(labelValue: String, imageVector: ImageVector) {
                 imageVector = imageVector,
                 contentDescription = ""
             )
-        }
+        },
+        singleLine = true,
+        maxLines = 1
     )
 }
 
